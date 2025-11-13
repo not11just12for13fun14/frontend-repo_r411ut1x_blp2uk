@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom'
+import MapViewer from './MapViewer'
 
 const API_BASE = import.meta.env.VITE_BACKEND_URL || ''
 
@@ -10,7 +11,7 @@ function Navbar() {
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="text-xl font-bold tracking-tight">ABDULLAH HOUSING</Link>
         <button className="md:hidden p-2" onClick={() => setOpen(!open)}>☰</button>
-        <nav className={`$${open ? 'block' : 'hidden'} md:block`}>
+        <nav className={`${open ? 'block' : 'hidden'} md:block`}>
           <ul className="md:flex md:gap-6 text-sm font-medium">
             <li><Link className="hover:text-blue-600" to="/">Home</Link></li>
             <li><Link className="hover:text-blue-600" to="/about">About</Link></li>
@@ -179,7 +180,7 @@ function MapPage() {
         <h2 className="text-2xl font-bold mb-4">Society Map</h2>
         {map && (
           <div className="bg-white rounded-lg shadow overflow-hidden">
-            <img src={map.map_image} alt="Society Map" className="w-full max-h-[560px] object-cover" />
+            <MapViewer src={map.map_image} className="w-full" />
             <p className="p-4 text-gray-700">{map.description}</p>
           </div>
         )}
